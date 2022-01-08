@@ -1,13 +1,11 @@
 import React from 'react';
 
-import Landing from 'components/Landing/Landing';
-
 import { Container } from './Home.styles';
 
 const Home = () => {
   return (
     <Container>
-      <Landing />
+      메인 페이지 작업 
     </Container>
   );
 };

@@ -8,13 +8,14 @@ import GlobalHelmet from 'components/GlobalHelmet/GlobalHelmet';
 import Routes from 'routers/routes';
 import CommonRoute from 'routers/CommonRoute';
 import Home from 'pages/Home/Home';
+import ModelList from 'pages/ModelList/ModelList';
 
 import { AppBody } from './App.styles';
 
-const BASE_URL = '/react-template-TODO';
+const BASE_URL = '/tsp-home';
 
 function App() {
-  const { root } = Routes;
+  const { root, modelList } = Routes;
 
   return (
     <ConfirmModalProvider>
@@ -23,6 +24,9 @@ function App() {
         <AppBody>
           <GlobalTheme />
           <Switch>
+            <CommonRoute path={modelList.path}>
+              <ModelList />
+            </CommonRoute>
             <CommonRoute path={root.path}>
               <Home />
             </CommonRoute>
