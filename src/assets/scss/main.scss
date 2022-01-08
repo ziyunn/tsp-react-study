@@ -10,7 +10,7 @@
     &__tit{position:absolute; top:0; left:0; right:0; height:calcRem(60rem); margin:0; text-align: center; z-index:110; @include body2; color:#fff; line-height: calcRem(60rem);}
     &__list{height:100%; margin:0; padding:0; list-style:none; text-align: center;}
     &__item{position:relative; height:100%;}
-    &__box{position: absolute; top:50%; left:50%; transform: translate(-50%,-50%); z-index:100; text-align:center;}
+    &__box{position: absolute; top:50%; left:50%; transform: translate(-50%,-50%); z-index:100; text-align:center; pointer-events: none;}
     &__img{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100%;}
     &__tit{position:absolute; }
     &__first,&__last{color:$yellow; @include h1; text-transform: uppercase;}

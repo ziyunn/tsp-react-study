@@ -8,10 +8,12 @@ import {
   rejectInterceptor,
 } from './interceptors';
 
-const ReactTemplateApi = Axios.create({ baseURL: getApiEndPoint() });
+const ReactTemplateApi = Axios.create({ baseURL: 'http://localhost:28080/' });
 
 ReactTemplateApi.interceptors.request.use(requestInterceptor);
 
 ReactTemplateApi.interceptors.response.use(responseInterceptor, rejectInterceptor);
+
+
 
 export { ReactTemplateApi };
