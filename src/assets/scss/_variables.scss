@@ -1,0 +1,60 @@
+@charset "utf-8";
+// Variables
+// 공통으로 사용되는 SCSS 변수들입니다.
+
+//img ver
+$ver:211025;
+
+//device
+$tablet-size:1024;
+
+//font
+$defaultSize:16;
+$defaultLetter:0.06em;
+
+//Font Weight
+$thin:100;
+$lightDown:200;
+$light:300;
+$regular :400;
+$medium :500;
+$bold:600;
+$black:700;
+
+
+//color
+$yellow:#EEFF25;
+$darkYellow:#D7E620;
+$deepYellow:#B2BF0C;
+
+$black:#000;
+$darkGray:#666;
+$gray:#aaa;
+$lightGray:#EBEBEB;
+$gloudGray:#F8F8F8;
+$white:#fff; 
+
+
+//Font Family
+$font-kor:'Noto Sans KR', Sans-Serif;
+$defaultFont:'Abril Fatface','Noto Sans KR', Sans-Serif, 'Malgun Gothic', '맑은 고딕', '맑은고딕', 'Dotum', '돋움';
+
+//layout 
+$sitePadding:16rem;
+$headerHeight:45rem;
+$topHeight:58rem;
+$itemHeight:40rem;
+
+$headerTotal: $headerHeight + $topHeight;
+
+//z-index;
+$headerZindex:130;
+$gnbZindex:15;
+$depth1Zindex:110;
+$depth2Zindex:120;
+$dimZindex:25;
+$searchZindex:150;
+
+
+
+

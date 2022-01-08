@@ -1,0 +1,14 @@
+@charset "UTF-8";
+@import "variables";
+@import "mixins";
+@import "vendor";
+@import "rule";
+//회원가입
+.page-main{
+	.header{
+		&:before{top:calcRem(-$headerHeight);}
+		&.is-active{
+			&:before{top:0;}
+		}
+	}
+}

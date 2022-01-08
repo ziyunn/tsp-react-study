@@ -1,0 +1,53 @@
+body{
+    &.is-active{position: fixed; left:0; right:0;}
+}
+
+.header{display:flex; position: absolute; top:0; left:0; width:100%; padding:calcRem(24rem) calcRem(16rem) 0; justify-content: space-between;
+    $this:&;
+    box-sizing: border-box; z-index:150;
+    &__logo{margin:0; width:calcRem(52rem);}
+    &.is-active{
+        #{$this}__logo{visibility: hidden; pointer-events: none;}
+    }
+}
+.menu-btn{overflow:hidden; display:flex; width:calcRem(48rem); height:calcRem(48rem); background:$yellow; border:none; align-items: center; justify-content: center;
+    $this:&;
+    &__line{position:relative; display:inline-block; width:calcRem(18rem); height:calcRem(2rem); text-indent: -9999px; 
+        background-color: $black;
+        &:before,&:after{display:block; position: absolute; width:100%; height:calcRem(2rem); background-color:$black; content:''; transition: transform 0.5s;}
+        &:before{top:calcRem(-6rem);}
+        &:after{bottom:calcRem(-6rem);}
+    }
+    &.is-active{background-color: $black;
+        #{$this}__line{background-color:$black;
+            &:before,&:after{background-color:$yellow}
+            &:before{top:0; transform: rotate(45deg);}
+            &:after{bottom:0;transform: rotate(-45deg);}
+        }
+    }
+}
+.gnb{position:fixed; top:0; width:100%; bottom:0; background-color:$yellow; transform: translateY(-100%); z-index: 130; transition: all 0.5s;
+    $this:&;
+    &.is-active{transform: translateY(0);}
+    &__wrap{position:absolute; top:50%; transform: translateY(-50%); padding:0 calcRem($sitePadding); box-sizing: border-box;}
+    &__list{margin:0; padding:0; list-style:none;}
+    &__item{position:relative; transform:translateZ(0);
+        & + &{margin-top:calcRem(16rem);}
+        &.is-active{
+            &:after{ display:block;  position:absolute; bottom:0; left:0; width:100%; height:calcRem(20rem); background:rgba(255,255,255,0.7); content:''; z-index:-1;}
+        }
+    }
+    &__link{@include h2();}
+}
+.gnb-sub{margin:calcRem(96rem) 0 0 0; padding:0; list-style: none;
+    &__item{
+        & + &{margin-top:calcRem(8rem);}
+    }
+    &__link{position:relative; display:inline-block; padding-right:calcRem(23rem); @include body1();
+        &:after{position:absolute; top:0; bottom:0; right:0; margin:auto 0; display:block; width:calcRem(5rem); height:calcRem(8rem); content:'';
+            background: url('../images/common/gnb_arrow.png') no-repeat center center / contain;
+        }
+    }
+}
+
+.footer{padding:calcRem(20rem) calcRem(10rem); font-size:calcRem(10rem); line-height:calclH(20,10); background-color:$yellow; font-weight:normal; font-family: $font-kor; text-align: center;}

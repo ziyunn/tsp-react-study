@@ -7,7 +7,7 @@ import GlobalConfirmModal from 'components/GlobalConfirmModal/GlobalConfirmModal
 import GlobalHelmet from 'components/GlobalHelmet/GlobalHelmet';
 import Routes from 'routers/routes';
 import CommonRoute from 'routers/CommonRoute';
-import Home from 'pages/Home/Home';
+import Home from 'pages/Home/Home.jsx';
 import ModelList from 'pages/ModelList/ModelList';
 
 import { AppBody } from './App.styles';
