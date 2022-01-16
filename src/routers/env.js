@@ -5,10 +5,10 @@ const getAppEnv = () => {
 const getApiEndPoint = () => {
   switch (getAppEnv()) {
     case 'production':
-      return '';
+      return 'https://jsonplaceholder.typicode.com/';
     case 'development':
     default:
-      return '';
+      return 'https://jsonplaceholder.typicode.com/';
   }
 };
 
