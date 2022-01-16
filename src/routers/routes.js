@@ -10,7 +10,14 @@ const modelList = {
   description: 'Model List',
 }
 
+const infiniteScroll = {
+  path: `/InfiniteScroll`,
+  url: `/InfiniteScroll`,
+  description: 'InfiniteScroll 테스트',
+}
+
 export default {
   root,
-  modelList
+  modelList,
+  infiniteScroll
 };
