@@ -29,6 +29,7 @@
     "react-toastify": "^7.0.3",
     "remember-ui": "^1.9.8",
     "styled-components": "^5.3.3",
+    "swiper": "^8.0.7",
     "ua-parser-js": "^0.7.24",
     "web-vitals": "^1.0.1"
   },

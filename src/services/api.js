@@ -14,4 +14,8 @@ ReactTemplateApi.interceptors.request.use(requestInterceptor);
 
 ReactTemplateApi.interceptors.response.use(responseInterceptor, rejectInterceptor);
 
-export { ReactTemplateApi };
+function mainVisualApi() {
+  return Axios.get(`http://localhost:28080/api/model/lists/main`);
+}
+
+export { ReactTemplateApi,mainVisualApi };

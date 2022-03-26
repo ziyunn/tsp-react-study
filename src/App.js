@@ -7,6 +7,8 @@ import GlobalConfirmModal from 'components/GlobalConfirmModal/GlobalConfirmModal
 import GlobalHelmet from 'components/GlobalHelmet/GlobalHelmet';
 import Routes from 'routers/routes';
 import CommonRoute from 'routers/CommonRoute';
+import Header from 'components/Header/Header.jsx';
+import Footer from 'components/Footer/Footer.jsx';
 import Home from 'pages/Home/Home.jsx';
 import ModelList from 'pages/ModelList/ModelList';
 import InfiniteScroll from 'pages/InfiniteScroll/InfiniteScroll';
@@ -32,7 +34,9 @@ function App() {
               <ModelList />
             </CommonRoute>
             <CommonRoute path={root.path}>
+              <Header/>
               <Home />
+              <Footer/>
             </CommonRoute>
             <Redirect to={root.path} />
           </Switch>
