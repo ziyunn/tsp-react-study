@@ -14,4 +14,8 @@ ReactTemplateApi.interceptors.request.use(requestInterceptor);
 
 ReactTemplateApi.interceptors.response.use(responseInterceptor, rejectInterceptor);
 
-export { ReactTemplateApi };
+function mainVisualApi(category,idx) {
+  return Axios.get(`http://localhost:28080/api/model/${category}/${idx}`);
+}
+
+export { ReactTemplateApi,mainVisualApi };
