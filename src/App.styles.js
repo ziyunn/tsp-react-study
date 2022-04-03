@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const AppBody = styled.div`
-  width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-`;
+
+  font-family: 'Abril Fatface','Noto Sans KR', Sans-Serif, 'Malgun Gothic', '맑은 고딕', '맑은고딕', 'Dotum', '돋움';
+  `;

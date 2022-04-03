@@ -7,15 +7,17 @@ import GlobalConfirmModal from 'components/GlobalConfirmModal/GlobalConfirmModal
 import GlobalHelmet from 'components/GlobalHelmet/GlobalHelmet';
 import Routes from 'routers/routes';
 import CommonRoute from 'routers/CommonRoute';
+import Header from 'components/Header/Header.jsx';
+import Footer from 'components/Footer/Footer.jsx';
 import Home from 'pages/Home/Home.jsx';
-import ModelList from 'pages/ModelList/ModelList';
+
 
 import { AppBody } from './App.styles';
 
-const BASE_URL = '/tsp-home';
+const BASE_URL = '/react-template-TODO';
 
 function App() {
-  const { root, modelList } = Routes;
+  const { root } = Routes;
 
   return (
     <ConfirmModalProvider>
@@ -24,11 +26,10 @@ function App() {
         <AppBody>
           <GlobalTheme />
           <Switch>
-            <CommonRoute path={modelList.path}>
-              <ModelList />
-            </CommonRoute>
             <CommonRoute path={root.path}>
+              <Header/>
               <Home />
+              <Footer/>
             </CommonRoute>
             <Redirect to={root.path} />
           </Switch>
