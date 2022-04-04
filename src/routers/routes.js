@@ -10,7 +10,14 @@ const modelList = {
   description: 'Model List',
 }
 
+const modelView = {
+  path: `/modelView`,
+  url: `/modelView`,
+  description: 'Model View',
+}
+
 export default {
   root,
-  modelList
+  modelList,
+  modelView
 };
