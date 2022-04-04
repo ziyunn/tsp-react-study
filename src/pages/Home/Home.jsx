@@ -1,5 +1,4 @@
 import React, {useEffect,useState} from 'react';
-import '../../assets/scss/common.scss';
 import '../../assets/scss/main.scss';
 import {mainVisualApi} from '../../services/main'
 import { Container } from './Home.styles';

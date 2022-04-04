@@ -10,6 +10,8 @@ import CommonRoute from 'routers/CommonRoute';
 import Header from 'components/Header/Header.jsx';
 import Footer from 'components/Footer/Footer.jsx';
 import Home from 'pages/Home/Home.jsx';
+import ModelView from "./pages/ModelView/ModelView";
+import 'assets/scss/common.scss';
 
 
 import { AppBody } from './App.styles';
@@ -17,7 +19,7 @@ import { AppBody } from './App.styles';
 const BASE_URL = '/react-template-TODO';
 
 function App() {
-  const { root } = Routes;
+  const { root, modelView } = Routes;
 
   return (
     <ConfirmModalProvider>
@@ -26,6 +28,11 @@ function App() {
         <AppBody>
           <GlobalTheme />
           <Switch>
+            <CommonRoute path={modelView.path}>
+              <Header/>
+              <ModelView />
+              <Footer/>
+            </CommonRoute>
             <CommonRoute path={root.path}>
               <Header/>
               <Home />
