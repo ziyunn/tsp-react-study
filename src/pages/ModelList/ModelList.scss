@@ -1,0 +1,33 @@
+h2 {
+  font-family: Abril Fatface;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+}
+
+ul, li {
+  padding: 0px;
+  margin: 0px;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.more_btn {
+  width: 100%;
+  text-align: center;
+  margin: 40px 0;
+  span {
+    width: 151px;
+    height: 56px;
+    line-height: 56px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 16px 40px;
+    background: #EEFF25;
+  }
+}

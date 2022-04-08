@@ -1,0 +1,23 @@
+li {
+  list-style: none;
+}
+
+.model_items {
+  width: 48%;
+  margin: 1%;
+  background-color: #eee;
+  &_img {
+      img {
+      width: 100%;
+    }
+  }
+  &_name {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 26px;
+  }
+  &_height, &_size {
+    font-size: 12px;
+    line-height: 22px;
+  }
+}
