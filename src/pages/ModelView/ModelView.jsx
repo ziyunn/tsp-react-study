@@ -1,10 +1,16 @@
-import React from 'react';
-import styled from 'styled-components'
+import React, {useEffect,useState} from 'react';
+import {useParams} from "react-router-dom";
+import styled from 'styled-components';
+import {yellow,darkYellow,deepYellow,lightGray,darkGray} from "../../style/color";
+import {Title2, Title3, Body1, Body3} from "../../style/font";
+import {calcRem} from "../../style/font";
+import { modelViewApi } from '../../services/category'
+
+
 
 const MainVisual = styled.div`
   position:relative;
   height:100vh;
-  
   img{
     width:100%; 
     height:100%;
@@ -31,59 +37,6 @@ const MainVisual = styled.div`
 `;
 
 
-//color
-const yellow = "#EEFF25";
-const darkYellow = "#D7E620";
-const deepYellow = "#B2BF0C";
-
-const black = "#000";
-const darkGray = "#666";
-const gray = "#aaa";
-const lightGray = "#EBEBEB";
-const gloudGray = "#F8F8F8";
-const white = "#fff";
-
-const defaultSize = 16;
-const defaultLetter = 0.06;
-
-const calcRem = (size) =>{
-    return size/defaultSize;
-}
-
-const calclH = (lh,font) =>{
-    return lh/font;
-}
-const Title2 = styled.p`
-  font-size:${calcRem(40)}rem;
-  line-height:${calclH(70,60)}; 
-  letter-spacing: ${defaultLetter}rem;
-  font-weight: ${(props) => props.weight || "400"};
-  color: ${(props) => props.color || "inherit"};
-`
-const Title3 = styled.p`
-  font-size:${calcRem(24)}rem;
-  line-height:${calclH(32,24)};
-  letter-spacing: ${defaultLetter}rem;
-  font-weight: ${(props) => props.weight || "400"};
-  color: ${(props) => props.color || "inherit"};
-  margin: ${(props) => props.margin || "0 0 0 0"};
-`
-const Body1 = styled.p`
-  font-size:${calcRem(16)}rem;
-  line-height:${calclH(26,16)};
-  letter-spacing: ${defaultLetter}rem;
-  font-weight: ${(props) => props.weight || "400"};
-  color: ${(props) => props.color || "inherit"};
-  margin: ${(props) => props.margin || "0 0 0 0"};
-`
-const Body3 = styled.p`
-  font-size:${calcRem(12)}rem;
-  line-height:${calclH(22,12)};
-  letter-spacing: ${defaultLetter}rem;
-  font-weight: ${(props) => props.weight || "400"};
-  color: ${(props) => props.color || "inherit"};
-  margin: ${(props) => props.margin || "0 0 0 0"};
-`
 
 const ModelWrap = styled.section`
   overflow: hidden;
@@ -191,6 +144,46 @@ const ModelImage = styled.div`
 `
 
 
+const ButtonClose = styled.button`
+  position:absolute;
+  display: block;
+  top:0;
+  bottom:0;
+  right:${calcRem(28)}rem;
+  width:${calcRem(24)}rem;
+  height:${calcRem(24)}rem;
+  margin: auto 0;
+  padding:0;
+  z-index:10;
+  border:none;
+  background: transparent;
+  span{
+    position:relative;
+    display:block;
+    width:100%;
+    height:100%;
+    &:before,&:after{
+      position:absolute;
+      display:block;
+      content:'';
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      margin: auto;
+      background: ${yellow};
+      transform: rotate(45deg);
+    }
+    &:before{
+      width:${calcRem(2)}rem;
+      height:100%;
+    }
+    &:after{
+      width:100%;
+      height:${calcRem(2)}rem;
+    }
+  }
+`
 
 const ButtonPlus = styled.div`
     overflow: hidden;
@@ -219,34 +212,54 @@ const ButtonPlus = styled.div`
   }
 `;
 
-const ModelView = (props) => {
+const ModelView = () => {
+    const [model, setModel] = useState(null)
+    let { params  }= useParams();
+
+
+    useEffect(()=> {
+        modelViewItem();
+    },[]);
+    const modelViewItem = async () => {
+        const modelData = await modelViewApi('1','20')
+        setModel(modelData)
+    }
+    const size3 = (number) =>{
+        const sizes = model.size3 && model.size3;
+        const size = sizes.split('-');
+        return size[number]
+    }
+    if(model === null) return false;
     return(
         <ModelWrap>
             <MainVisual>
-                <img src={`${process.env.PUBLIC_URL}/upload/1223023959779.jpg`} alt=""/>
+                <img src={`/uplode/${model.modelImage[0].fileMask}`} alt=""/>
                 <h1>
-                    <Title2 as="span" color={yellow} className="main-visual__eng">KIM YE YEONG</Title2>
-                    <Title3 as="span" color="#fff" margin="8px 0 0 0" className="main-visual__kor">김예영</Title3>
+                    <Title2 as="span" color={yellow} upper={true} className="main-visual__eng">{model.modelEngName}</Title2>
+                    <Title3 as="span" color="#fff" margin="8px 0 0 0" className="main-visual__kor">{model.modelKorName}</Title3>
                 </h1>
+                <ButtonClose>
+                    <span></span>
+                </ButtonClose>
             </MainVisual>
             <ModelInfo>
                 <li>
                     <Body1 as="span" className="model-info__tit">Height</Body1>
-                    <Body1 as="span" className="model-info__txt">173cm</Body1>
+                    <Body1 as="span" className="model-info__txt">{model.height}cm</Body1>
                 </li>
                 <li className="model-info__3size">
                     <Body1 as="span" className="model-info__tit">B</Body1>
-                    <Body1 as="span" className="model-info__txt">31</Body1>
+                    <Body1 as="span" className="model-info__txt">{size3(0)}</Body1>
                     <Body1 as="span" className="model-info__bar">-</Body1>
                     <Body1 as="span" className="model-info__tit">W</Body1>
-                    <Body1 as="span" className="model-info__txt">31</Body1>
+                    <Body1 as="span" className="model-info__txt">{size3(1)}</Body1>
                     <Body1 as="span" className="model-info__bar">-</Body1>
                     <Body1 as="span" className="model-info__tit">H</Body1>
-                    <Body1 as="span" className="model-info__txt">31</Body1>
+                    <Body1 as="span" className="model-info__txt">{size3(2)}</Body1>
                 </li>
                 <li>
                     <Body1 as="span" className="model-info__tit">Shoes</Body1>
-                    <Body1 as="span" className="model-info__txt">240 - 5mm</Body1>
+                    <Body1 as="span" className="model-info__txt">{model.shoes}mm</Body1>
                 </li>
             </ModelInfo>
             <ModelCareer>
@@ -268,18 +281,25 @@ const ModelView = (props) => {
                 </ul>
             </ModelCareer>
             <ModelImages>
-                <ModelImage single={true}>
-                    <img src={`${process.env.PUBLIC_URL}/upload/1223023959779.jpg`}  alt=""/>
-                </ModelImage>
-                <ModelImage single={false}>
-                    <img src={`${process.env.PUBLIC_URL}/upload/1223023959779.jpg`}  alt=""/>
-                </ModelImage>
-                <ModelImage single={false}>
-                    <img src={`${process.env.PUBLIC_URL}/upload/1223023959779.jpg`}  alt=""/>
-                </ModelImage>
-                <ModelImage single={true}>
-                    <img src={`${process.env.PUBLIC_URL}/upload/1223023959779.jpg`}  alt=""/>
-                </ModelImage>
+                {
+                    model.modelImage.map((image,idx) => {
+                        if(idx === 0) return false;
+                        if(idx === 2 || idx === 3){
+                            return(
+                                <ModelImage single={false} key={idx}>
+                                    <img src={`${process.env.PUBLIC_URL}/upload/1223023959779.jpg`}  alt=""/>
+                                </ModelImage>
+                            )
+                        }else{
+                            return(
+                                <ModelImage single={true} key={idx}>
+                                    <img src={`${process.env.PUBLIC_URL}/upload/1223023959779.jpg`}  alt=""/>
+                                </ModelImage>
+                            )
+                        }
+
+                    })
+                }
             </ModelImages>
         </ModelWrap>
     )
