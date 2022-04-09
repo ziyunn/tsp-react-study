@@ -1,5 +1,8 @@
 import {ReactTemplateApi} from "./api";
 
-export const mainVisualApi = () => {
+const mainVisualApi = () => {
     return ReactTemplateApi.get(`/api/model/lists/main`);
 };
+
+
+export {mainVisualApi}

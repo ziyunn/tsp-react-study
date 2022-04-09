@@ -27,19 +27,17 @@ function App() {
       <BrowserRouter basename={BASE_URL}>
         <AppBody>
           <GlobalTheme />
+          <Header/>
           <Switch>
             <CommonRoute path={modelView.path}>
-              <Header/>
               <ModelView />
-              <Footer/>
             </CommonRoute>
             <CommonRoute path={root.path}>
-              <Header/>
               <Home />
-              <Footer/>
             </CommonRoute>
             <Redirect to={root.path} />
           </Switch>
+          <Footer/>
         </AppBody>
         <GlobalConfirmModal />
       </BrowserRouter>
