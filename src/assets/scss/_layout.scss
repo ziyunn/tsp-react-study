@@ -30,16 +30,16 @@ body{
     $this:&;
     &.is-active{transform: translateY(0);}
     &__wrap{position:absolute; top:50%; transform: translateY(-50%); padding:0 calcRem($sitePadding); box-sizing: border-box;}
-    &__list{margin:0; padding:0; list-style:none;}
+    &__list{display:block; margin:0; padding:0; list-style:none;}
     &__item{position:relative; transform:translateZ(0);
         & + &{margin-top:calcRem(16rem);}
         &.is-active{
-            &:after{ display:block;  position:absolute; bottom:0; left:0; width:100%; height:calcRem(20rem); background:rgba(255,255,255,0.7); content:''; z-index:-1;}
+            #{$this}__link:after{ display:block;  position:absolute; bottom:0; left:0; width:100%; height:calcRem(20rem); background:rgba(255,255,255,0.7); content:''; z-index:-1;}
         }
     }
-    &__link{@include h2();}
+    &__link{position:relative; dipslay: inline-block; @include h2();}
 }
-.gnb-sub{margin:calcRem(96rem) 0 0 0; padding:0; list-style: none;
+.gnb-sub{display:block; margin:calcRem(96rem) 0 0 0; padding:0; list-style: none;
     &__item{
         & + &{margin-top:calcRem(8rem);}
     }
