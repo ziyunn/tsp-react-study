@@ -3,7 +3,7 @@ export default {
 		{
 			KEY:1,
 			TITLE:'TSP',
-			LINK:'/'
+			LINK:'/about'
 		},
 		{
 			KEY:2,
