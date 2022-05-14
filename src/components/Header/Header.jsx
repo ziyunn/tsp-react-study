@@ -55,7 +55,6 @@ const header = (props) => {
 						{
 							Constants.GNBSUB.map((item,idx) => {
 								let totalIdx = idx + Constants.GNB.length;
-								console.log(totalIdx)
 								return(
 									<li className={`gnb-sub__item ${number === (totalIdx) ? 'is-active' : ''} `} key={item.KEY}>
 										<Link className="gnb-sub__link" onClick={(e)=>gnbClose({e,idx:totalIdx})} to={item.LINK}>{item.TITLE}</Link>
