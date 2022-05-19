@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect } from 'react';
+import {Link, useParams} from 'react-router-dom';
 import styled from "styled-components";
 import {Title3 , Body1, Body3, calcRem} from "../../style/font";
 import {white,black} from "../../style/color";
@@ -66,10 +67,12 @@ const listItems = ({model, modelFn, modelList}) => {
 					modelList && modelList.map((item, idx) => {
 						return(
 							<ListItem key={idx}>
-								<img className="model-item__img" src="/upload/1223023959779.jpg" alt=""/>
-								<Body1 className="model-item__title">{item.modelEngName}</Body1>
-								<Body3 className="model-item__txt">{item.height}</Body3>
-								<Body3 className="model-item__txt">{item.size3}</Body3>
+								<Link to={`/modelView/${item.categoryCd}/${item.idx}`}>
+									<img className="model-item__img" src="/upload/1223023959779.jpg" alt=""/>
+									<Body1 className="model-item__title">{item.modelEngName}</Body1>
+									<Body3 className="model-item__txt">{item.height}</Body3>
+									<Body3 className="model-item__txt">{item.size3}</Body3>
+								</Link>
 							</ListItem>
 						)
 					})
@@ -84,8 +87,9 @@ const ModelList = () => {
 	const [modelList, setModelList] = useState(null)
 	const [current, setCurrent] = useState(1);
 	const [isTotalZero, setIsTotalZero] = useState(false);
+	const {category}  = useParams();
 	const modelViewItem = async () => {
-		const modelData = await modelListApi(1,1,3)
+		const modelData = await modelListApi(category,1,3)
 		setModels(modelData);
 		setModelList(modelData.modelList);
 	}
@@ -100,7 +104,7 @@ const ModelList = () => {
 	
 	useEffect(()=> {
 		modelViewItem();
-	},[]);
+	},[category]);
 	
 	if(!modelList) return false;
   return (

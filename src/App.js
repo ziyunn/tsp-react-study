@@ -28,7 +28,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/modelView/:page" element={<ModelView />} />
+            <Route path="/modelView/:category/:number" element={<ModelView />} />
             <Route path="/modelList/:category" element={<ModelList />} />
           </Routes>
           <Footer/>

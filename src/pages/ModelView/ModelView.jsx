@@ -214,14 +214,14 @@ const ButtonPlus = styled.div`
 
 const ModelView = () => {
     const [model, setModel] = useState(null)
-    let { params  }= useParams();
+    let { category, number  }= useParams();
 
 
     useEffect(()=> {
         modelViewItem();
     },[]);
     const modelViewItem = async () => {
-        const modelData = await modelViewApi('1','20')
+        const modelData = await modelViewApi(category,number);
         setModel(modelData)
     }
     const size3 = (number) =>{
