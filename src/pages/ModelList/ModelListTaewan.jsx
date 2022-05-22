@@ -48,6 +48,9 @@ const ListItem = styled.li`
       width:100%;
       vertical-align: middle;
 		}
+		&__title{
+			text-transform: uppercase;
+		}
 		&__title, &__txt{
 			color:${white};
 		}
@@ -57,9 +60,6 @@ const ListItem = styled.li`
 const listItems = ({model, modelFn, modelList}) => {
 	const {modelListTotalCnt} = model;
 	if(!model) return false;
-	console.log(modelListTotalCnt);
-	console.log(modelList.length);
-	console.log(modelListTotalCnt > modelList.length)
 	return (
 		<ul>
 			<InfiniteScroll next={modelFn} hasMore={modelListTotalCnt > modelList.length} dataLength={modelList.length}>
@@ -68,8 +68,8 @@ const listItems = ({model, modelFn, modelList}) => {
 						return(
 							<ListItem key={idx}>
 								<Link to={`/modelView/${item.categoryCd}/${item.idx}`}>
-									<img className="model-item__img" src="/upload/1223023959779.jpg" alt=""/>
-									<Body1 className="model-item__title">{item.modelEngName}</Body1>
+									<img className="model-item__img" src={`${process.env.REACT_APP_ADMIN_URL}${item.modelImage[0].fileMask}`} alt=""/>
+									<Body1 weight="700" className="model-item__title">{item.modelEngName}</Body1>
 									<Body3 className="model-item__txt">{item.height}</Body3>
 									<Body3 className="model-item__txt">{item.size3}</Body3>
 								</Link>
@@ -102,15 +102,29 @@ const ModelList = () => {
 		setIsTotalZero(isTotalZero ? true : false);
 	}
 	
+	const listTitle = () => {
+		switch(category){
+			case '1':
+				return 'MALE';
+			case '2':
+				return 'FEMALE';
+			case '3':
+				return 'SENIOR'
+			default :
+				return false;
+		}
+	}
+	
 	useEffect(()=> {
 		modelViewItem();
 	},[category]);
+	
 	
 	if(!modelList) return false;
   return (
     <>
 			<ListWrap>
-				<Title3 className="list-title font-abril" color={white}>FEMALE</Title3>
+				<Title3 className="list-title font-abril" color={white}>{listTitle()}</Title3>
 				{listItems({model : models, modelFn: ()=>getList(), modelList: modelList})}
 			</ListWrap>
     </>

@@ -45,7 +45,7 @@ const header = (props) => {
 							Constants.GNB.map((item,idx) => {
 								return(
 									<li className={`gnb__item ${number === idx ? 'is-active' : ''} `} key={item.KEY}>
-										<Link className="gnb__link" onClick={(e)=>gnbClose({e,idx})} to={item.LINK}>{item.TITLE}</Link>
+										<Link className="gnb__link font-abril" onClick={(e)=>gnbClose({e,idx})} to={item.LINK}>{item.TITLE}</Link>
 									</li>
 								);
 							})
@@ -57,7 +57,7 @@ const header = (props) => {
 								let totalIdx = idx + Constants.GNB.length;
 								return(
 									<li className={`gnb-sub__item ${number === (totalIdx) ? 'is-active' : ''} `} key={item.KEY}>
-										<Link className="gnb-sub__link" onClick={(e)=>gnbClose({e,idx:totalIdx})} to={item.LINK}>{item.TITLE}</Link>
+										<Link className="gnb-sub__link font-abril" onClick={(e)=>gnbClose({e,idx:totalIdx})} to={item.LINK}>{item.TITLE}</Link>
 									</li>
 								);
 							})
@@ -71,7 +71,9 @@ const header = (props) => {
 		<>
 			<header className="header" ref={header}>
 				<h1 className="header__logo">
-					<img src={Logo} className="img-w100" alt="tsp"/>
+					<Link to={`/`}>
+						<img src={Logo} className="img-w100" alt="tsp"/>
+					</Link>
 				</h1>
 				<button className="menu-btn" ref={menuBtn} onClick={(e)=>{gnbToggle({e,number})}}>
 					<span className="menu-btn__line">line</span>

@@ -1,10 +1,11 @@
 import React, {useEffect,useState} from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import styled from 'styled-components';
 import {yellow,darkYellow,deepYellow,lightGray,darkGray} from "../../style/color";
 import {Title2, Title3, Body1, Body3} from "../../style/font";
 import {calcRem} from "../../style/font";
 import { modelViewApi } from '../../services/category'
+
 
 
 
@@ -100,7 +101,6 @@ const ModelCareer = styled.div`
     &__head {
       display: flex;
       justify-content: space-between;
-      padding-bottom: ${calcRem(40)}rem;
     }
     &__tit {
       margin-bottom: ${calcRem(16)}rem;
@@ -108,7 +108,11 @@ const ModelCareer = styled.div`
       border-bottom: 2px solid ${lightGray};
     }
     &__list{
-      margin:0;
+			&.is-active{
+				display:block;
+			}
+			display: none;
+      margin:${calcRem(40)}rem 0 0;
       padding:0;
     }
     &__item{
@@ -192,6 +196,11 @@ const ButtonPlus = styled.div`
     height:${calcRem(32)}rem;
     border:${calcRem(2)}rem solid black;
     text-indent: -9999px;
+	&.is-active{
+		&:after{
+			display:none;
+		}
+	}
   &:before,&:after{
     position:absolute;
     top:0;
@@ -213,11 +222,14 @@ const ButtonPlus = styled.div`
 `;
 
 const ModelView = () => {
-    const [model, setModel] = useState(null)
-    let { category, number  }= useParams();
-
-
-    useEffect(()=> {
+    const [model, setModel] = useState(null);
+		const [ career, setCareer ] = useState(false)
+    const { category, number  }= useParams();
+		const onToggle = () => {
+			setCareer(!career)
+		}
+	
+	useEffect(()=> {
         modelViewItem();
     },[]);
     const modelViewItem = async () => {
@@ -233,14 +245,16 @@ const ModelView = () => {
     return(
         <ModelWrap>
             <MainVisual>
-                <img src={`/uplode/${model.modelImage[0].fileMask}`} alt=""/>
+                <img src={`${process.env.REACT_APP_ADMIN_URL}${model.modelImage[0].fileMask}`} alt=""/>
                 <h1>
-                    <Title2 as="span" color={yellow} upper={true} className="main-visual__eng">{model.modelEngName}</Title2>
+                    <Title2 as="span" color={yellow} upper={true} className="main-visual__eng font-abril">{model.modelEngName}</Title2>
                     <Title3 as="span" color="#fff" margin="8px 0 0 0" className="main-visual__kor">{model.modelKorName}</Title3>
                 </h1>
-                <ButtonClose>
-                    <span></span>
-                </ButtonClose>
+									<ButtonClose>
+										<Link to={`/modelList/${category}`}>
+											<span></span>
+										</Link>
+									</ButtonClose>
             </MainVisual>
             <ModelInfo>
                 <li>
@@ -267,9 +281,9 @@ const ModelView = () => {
                     <Title3 weight="700">
                         경력사항
                     </Title3>
-                    <ButtonPlus>button</ButtonPlus>
+                    <ButtonPlus className={`${career ? 'is-active' : ''}`} onClick={onToggle}>button</ButtonPlus>
                 </div>
-                <ul className="model-career__list">
+                <ul className={`model-career__list ${career ? 'is-active' : ''}`}>
                     <li className="model-career__item">
                         <Body1 as="h3" className="model-career__tit" weight="700">Clothes</Body1>
                         <Body3 color={darkGray}>hstyle(CH) , mixxmix , Icecream12 , Odd gallary , Armoire, Wusi`na , Blue pie , Canebros , Truu , Dabkorea , Accbee </Body3>
@@ -287,13 +301,13 @@ const ModelView = () => {
                         if(idx === 2 || idx === 3){
                             return(
                                 <ModelImage single={false} key={idx}>
-                                    <img src={`${process.env.PUBLIC_URL}/upload/1223023959779.jpg`}  alt=""/>
+                                    <img src={`${process.env.REACT_APP_ADMIN_URL}${image.fileMask}`}  alt=""/>
                                 </ModelImage>
                             )
                         }else{
                             return(
                                 <ModelImage single={true} key={idx}>
-                                    <img src={`${process.env.PUBLIC_URL}/upload/1223023959779.jpg`}  alt=""/>
+                                    <img src={`${process.env.REACT_APP_ADMIN_URL}${image.fileMask}`}  alt=""/>
                                 </ModelImage>
                             )
                         }
