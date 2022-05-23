@@ -11,7 +11,7 @@ import Footer from 'components/Footer/Footer.jsx';
 import Home from 'pages/Home/Home.jsx';
 import About from 'pages/About/About.jsx';
 import ModelView from "./pages/ModelView/ModelView";
-import ModelList from "./pages/ModelList/ModelList";
+import ModelList from "./pages/ModelList/ModelListTaewan.jsx";
 import 'assets/scss/common.scss';
 
 
@@ -28,7 +28,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/modelView/:page" element={<ModelView />} />
+            <Route path="/modelView/:category/:number" element={<ModelView />} />
             <Route path="/modelList/:category" element={<ModelList />} />
           </Routes>
           <Footer/>

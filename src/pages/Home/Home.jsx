@@ -77,7 +77,7 @@ const Home = () => {
                   className="main-banner__item"
               >
                 <div className="main-banner__crop">
-                  <img className="main-banner__img" src={`/upload/${list.modelImage[0].fileMask}`} alt=""/>
+                  <img className="main-banner__img" src={`${process.env.REACT_APP_ADMIN_URL}${list.modelImage[0].fileMask}`} alt=""/>
                 </div>
               </SwiperSlide>
             )
@@ -95,18 +95,18 @@ const Home = () => {
               <h2 className="main-banner__tit">TSP MALE MODEL</h2>
               {mainBannerList()}
               <p className="main-banner__number type-current">
-                <span className="main-banner__bar">
+                <span className="main-banner__bar font-abril">
                   {isEmptyObj(mainBanner) ? 0 :checkNumber(mainBanner.activeIndex + 1)}
                 </span>
               </p>
               <p className="main-banner__number type-total">
-                <span className="main-banner__bar">{checkNumber(visual.modelListTotalCnt)}</span>
+                <span className="main-banner__bar font-abril">{checkNumber(visual.modelListTotalCnt)}</span>
               </p>
               {
                 isEmptyObj(mainBanner) ? null : (
                   <div className="main-banner__box">
-                    <p className="main-banner__first">{visual.modelList[mainBanner.activeIndex].modelFirstName}</p>
-                    <p className="main-banner__last">{visual.modelList[mainBanner.activeIndex].modelSecondName}</p>
+                    <p className="main-banner__first font-abril">{visual.modelList[mainBanner.activeIndex].modelFirstName}</p>
+                    <p className="main-banner__last font-abril">{visual.modelList[mainBanner.activeIndex].modelSecondName}</p>
                   </div>
                 )
               }

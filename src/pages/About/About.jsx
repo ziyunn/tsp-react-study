@@ -1,6 +1,8 @@
 import React from "react";
 import { Title1, Title3, Body1, Body2, Body3, calcRem } from "../../style/font";
 import { darkGray, yellow, gray } from "../../style/color";
+import AboutImage from 'assets/images/about/img.png'
+
 import parse from "html-react-parser";
 import styled from "styled-components";
 
@@ -11,6 +13,7 @@ const businessList = [
   "MODEL ACADEMY",
   "TSP STUDIO",
 ];
+
 
 const productionList = [
   {
@@ -68,6 +71,39 @@ const productionList = [
   },
 ];
 
+const AboutTop = styled.section`
+	.about-top{
+		&__tit{
+			margin: 0;
+		}
+		&__wrap{
+      padding: ${calcRem(136)}rem ${calcRem(40)}rem 0;
+		}
+		&__inner{
+			position: relative;
+		}
+		&__span{
+			position: absolute;
+			&:nth-child(1){
+				top: -${calcRem(32)}rem;
+				left: -${calcRem(24)}rem;
+			}
+			&:nth-child(2){
+        top: ${calcRem(32)}rem;
+        right: -${calcRem(24)}rem;
+				color: transparent;
+        text-stroke: 1px ${yellow};
+        -webkit-text-stroke: 1px ${yellow};
+      }
+      &:nth-child(3){
+        bottom: -${calcRem(24)}rem;
+        right: -${calcRem(24)}rem;
+      }
+		}
+	}
+`;
+
+
 const AboutWrap = styled.section`
   background: #000000;
   text-align: center;
@@ -98,8 +134,7 @@ const AboutWrap = styled.section`
   }
 `;
 const AboutArea = styled.section`
-  padding: ${calcRem(40)}rem ${calcRem(16)}rem;
-
+  padding: ${calcRem(64)}rem ${calcRem(16)}rem ${calcRem(40)}rem;
   &.type-yellow {
     background: ${yellow};
   }
@@ -190,6 +225,18 @@ const About = (props) => {
   return (
     <>
       <AboutWrap>
+				<AboutTop>
+					<div className="about-top__wrap">
+						<div className="about-top__inner">
+							<h1 className="about-top__tit">
+								<Title1 color={yellow} className="about-top__span font-abril">WHO</Title1>
+								<Title1 color={yellow} className="about-top__span font-abril">WE</Title1>
+								<Title1 color={yellow} className="about-top__span font-abril">ARE</Title1>
+							</h1>
+							<img src={AboutImage} className="img-w100" alt=""/>
+						</div>
+					</div>
+				</AboutTop>
         <AboutArea>
           <Title3 as="h3" weight="700" color="#fff" className="about__title">
             ABOUT TSP
