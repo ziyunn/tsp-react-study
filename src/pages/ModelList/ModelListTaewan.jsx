@@ -89,15 +89,14 @@ const ModelList = () => {
 	const [isTotalZero, setIsTotalZero] = useState(false);
 	const {category}  = useParams();
 	const modelViewItem = async () => {
-		const modelData = await modelListApi(category,1,3)
+		const modelData = await modelListApi(category,1,4)
 		setModels(modelData);
 		setModelList(modelData.modelList);
 	}
 	
 	const getList = async () => {
-		console.log('get');
 		setCurrent(current + 1);
-		const modelData = await modelListApi(1,current + 1,3)
+		const modelData = await modelListApi(category,current + 1,4)
 		setModelList(modelList.concat(modelData.modelList));
 		setIsTotalZero(isTotalZero ? true : false);
 	}
@@ -116,6 +115,7 @@ const ModelList = () => {
 	}
 	
 	useEffect(()=> {
+		setCurrent(1)
 		modelViewItem();
 	},[category]);
 	
