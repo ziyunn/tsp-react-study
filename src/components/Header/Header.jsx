@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import Constants from './state'
-import { Link } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import Logo from 'assets/images/common/logo.png'
 const header = (props) => {
 	const gnb = useRef(null);
@@ -8,7 +8,8 @@ const header = (props) => {
 	const menuBtn = useRef(null);
 	const body = document.querySelector('body');
 	const [gnbState, setGnbState] = useState(false);
-	const [number,setNumber] = useState(0)
+	const [number,setNumber] = useState(0);
+	const { category  }= useParams();
 	const gnbClose = ({e,idx}) => {
 		gnb.current.classList.remove('is-active');
 		header.current.classList.remove('is-active');
@@ -34,8 +35,9 @@ const header = (props) => {
 	}
 
 	useEffect(() => {
-
-	},[]);
+		console.log(category)
+		setNumber(category)
+	},[category]);
 	const gnbList = () =>{
 		return(
 			<nav className="gnb" ref={gnb}>

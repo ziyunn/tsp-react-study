@@ -228,7 +228,62 @@ const ModelView = () => {
 		const onToggle = () => {
 			setCareer(!career)
 		}
-	
+		
+		const modelImages = (images) => {
+			images.forEach((item,idx)=>{
+				item.id = idx;
+			});
+			return (
+				<ModelImages>
+					{
+						images.map((image,idx) => {
+							if(idx === 0) return false;
+							if(idx === 2 || idx === 3){
+								return(
+									<ModelImage single={false} key={image.id}>
+										<img src={`${process.env.REACT_APP_ADMIN_URL}${image.fileMask}`}  alt=""/>
+									</ModelImage>
+								)
+							}else{
+								return(
+									<ModelImage single={true} key={image.id}>
+										<img src={`${process.env.REACT_APP_ADMIN_URL}${image.fileMask}`}  alt=""/>
+									</ModelImage>
+								)
+							}
+							
+						})
+					}
+				</ModelImages>
+			)
+		}
+		const careerList = (careerList) => {
+			careerList.forEach((item,idx)=>{
+				item.id = idx
+			});
+			return(
+				<ModelCareer>
+					<div className="model-career__head">
+						<Title3 weight="700">
+							경력사항
+							
+						</Title3>
+						<ButtonPlus className={`${career ? 'is-active' : ''}`} onClick={onToggle}>button</ButtonPlus>
+					</div>
+					<ul className={`model-career__list ${career ? 'is-active' : ''}`}>
+						{careerList.map(item => {
+							return (
+								<li className="model-career__item" key={item.id}>
+									<Body1 as="h3" className="model-career__tit" weight="700">{item.title}</Body1>
+									<Body3 color={darkGray}>{item.txt}</Body3>
+								</li>
+							)
+						})}
+					</ul>
+				</ModelCareer>
+			)
+		}
+		
 	useEffect(()=> {
         modelViewItem();
     },[]);
@@ -276,45 +331,10 @@ const ModelView = () => {
                     <Body1 as="span" className="model-info__txt">{model.shoes}mm</Body1>
                 </li>
             </ModelInfo>
-            <ModelCareer>
-                <div className="model-career__head">
-                    <Title3 weight="700">
-                        경력사항
-                    </Title3>
-                    <ButtonPlus className={`${career ? 'is-active' : ''}`} onClick={onToggle}>button</ButtonPlus>
-                </div>
-                <ul className={`model-career__list ${career ? 'is-active' : ''}`}>
-                    <li className="model-career__item">
-                        <Body1 as="h3" className="model-career__tit" weight="700">Clothes</Body1>
-                        <Body3 color={darkGray}>hstyle(CH) , mixxmix , Icecream12 , Odd gallary , Armoire, Wusi`na , Blue pie , Canebros , Truu , Dabkorea , Accbee </Body3>
-                    </li>
-                    <li className="model-career__item">
-                        <Body1 as="h3" className="model-career__tit" weight="700">Video / MV</Body1>
-                        <Body3 color={darkGray}>hstyle(CH) , mixxmix , Icecream12 , Odd gallary , Armoire, Wusi`na , Blue pie , Canebros , Truu , Dabkorea , Accbee </Body3>
-                    </li>
-                </ul>
-            </ModelCareer>
-            <ModelImages>
-                {
-                    model.modelImage.map((image,idx) => {
-                        if(idx === 0) return false;
-                        if(idx === 2 || idx === 3){
-                            return(
-                                <ModelImage single={false} key={idx}>
-                                    <img src={`${process.env.REACT_APP_ADMIN_URL}${image.fileMask}`}  alt=""/>
-                                </ModelImage>
-                            )
-                        }else{
-                            return(
-                                <ModelImage single={true} key={idx}>
-                                    <img src={`${process.env.REACT_APP_ADMIN_URL}${image.fileMask}`}  alt=""/>
-                                </ModelImage>
-                            )
-                        }
-
-                    })
-                }
-            </ModelImages>
+						{model.careerList && careerList(model.careerList)}
+					{model.modelImage && modelImages(model.modelImage)}
+					
+        
         </ModelWrap>
     )
 };
