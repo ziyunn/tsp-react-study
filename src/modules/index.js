@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import list from './list';
+import gnb from './gnb';
 
 const rootReducer = combineReducers({
-	list
+	gnb
 });
 
 export default rootReducer;

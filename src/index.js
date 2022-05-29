@@ -7,9 +7,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './modules';
+import { composeWithDevTools } from 'redux-devtools-extension'; // 리덕스 개발자 도구
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools());
+console.log(store.getState()); // 스토어의 상태를 확인해봅시다.
+// 스토어안에 들어있는 상태가 바뀔 때 마다 호출되는 listener 함수
+const listener = () => {
+	const state = store.getState();
+	console.log(state);
+};
 
+const unsubscribe = store.subscribe(listener);
 ReactDOM.render(
 	<Provider store={store}>
 		<App />
