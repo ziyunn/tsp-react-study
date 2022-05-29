@@ -31,6 +31,7 @@
     "react-scripts": "4.0.3",
     "react-toastify": "^7.0.3",
     "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
     "remember-ui": "^1.9.8",
     "styled-components": "^5.2.1",
     "swiper": "^8.0.7",

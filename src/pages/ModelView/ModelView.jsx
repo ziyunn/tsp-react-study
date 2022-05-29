@@ -5,6 +5,8 @@ import {yellow,darkYellow,deepYellow,lightGray,darkGray} from "../../style/color
 import {Title2, Title3, Body1, Body3} from "../../style/font";
 import {calcRem} from "../../style/font";
 import { modelViewApi } from '../../services/category'
+import {gnbNum} from "../../modules/gnb";
+import {useDispatch} from "react-redux";
 
 
 
@@ -225,9 +227,14 @@ const ModelView = () => {
     const [model, setModel] = useState(null);
 		const [ career, setCareer ] = useState(false)
     const { category, number  }= useParams();
-		const onToggle = () => {
+		const dispatch = useDispatch();
+	const onToggle = () => {
 			setCareer(!career)
 		}
+	
+		useEffect(()=> {
+			dispatch(gnbNum(Number(category)))
+		},[]);
 		
 		const modelImages = (images) => {
 			images.forEach((item,idx)=>{

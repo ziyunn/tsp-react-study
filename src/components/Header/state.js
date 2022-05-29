@@ -7,13 +7,13 @@ export default {
 		},
 		{
 			KEY:2,
-			TITLE:'FEMALE',
-			LINK:'/modelList/2'
+			TITLE:'MALE',
+			LINK:'/modelList/1'
 		},
 		{
 			KEY:3,
-			TITLE:'MALE',
-			LINK:'/modelList/1'
+			TITLE:'FEMALE',
+			LINK:'/modelList/2'
 		},
 		{
 			KEY:4,

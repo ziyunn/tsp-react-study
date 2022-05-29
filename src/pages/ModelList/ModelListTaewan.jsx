@@ -5,6 +5,8 @@ import {Title3 , Body1, Body3, calcRem} from "../../style/font";
 import {white,black} from "../../style/color";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {modelListApi, modelViewApi} from '../../services/category'
+import {gnbNum} from "../../modules/gnb";
+import {useDispatch} from "react-redux";
 
 const ListWrap = styled.section`
   overflow: hidden;
@@ -88,6 +90,7 @@ const ModelList = () => {
 	const [current, setCurrent] = useState(1);
 	const [isTotalZero, setIsTotalZero] = useState(false);
 	const {category}  = useParams();
+	const dispatch = useDispatch();
 	const modelViewItem = async () => {
 		const modelData = await modelListApi(category,1,4)
 		setModels(modelData);
@@ -119,6 +122,10 @@ const ModelList = () => {
 		modelViewItem();
 	},[category]);
 	
+	
+	useEffect(()=> {
+		dispatch(gnbNum(Number(category)));
+	},[]);
 	
 	if(!modelList) return false;
   return (
