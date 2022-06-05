@@ -37,5 +37,32 @@ export default {
 			TITLE:'CONTACT',
 			LINK:'/contact'
 		},
+	],
+	LISTTAP:[
+		{
+			KEY:1,
+			TITLE:'ALL',
+			LINK:'/1'
+		},
+		{
+			KEY:2,
+			TITLE:'40대',
+			LINK:'/2'
+		},
+		{
+			KEY:3,
+			TITLE:'50대',
+			LINK:'/3'
+		},
+		{
+			KEY:4,
+			TITLE:'60대',
+			LINK:'/2'
+		},
+		{
+			KEY:5,
+			TITLE:'70대',
+			LINK:'/3'
+		},
 	]
 }
