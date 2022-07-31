@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
 import { calcRem } from "../../style/font";
 import icoMagnifier from "assets/images/production/icon_magnifier.png";
+import { changeSearchValue } from "../../modules/action";
+import { productionSearchApi } from "../../services/production";
 
 const InputStyle1 = styled.div`
   position: relative;
@@ -28,21 +29,31 @@ const InputStyle1 = styled.div`
     border: none;
     background: url(${icoMagnifier}) no-repeat center center / contain;
     text-indent: -999px;
+    z-index: 20;
   }
 `;
 
 const Input = (props) => {
-  const handleChange = () => {};
+  const handleChange = (value) => {
+    props.dispatch(changeSearchValue(value));
+  };
+  const onSearch = async () => {
+    const { category, text } = props.reducerState.production;
+    const productionData = await productionSearchApi(category, text);
+    props.setList(productionData.productionList);
+  };
   return (
     <InputStyle1>
       <input
         type="text"
         placeholder="검색어를 입력하세요"
         onChange={(e) => {
-          handleChange(e);
+          handleChange(e.target.value);
         }}
       />
-      <button type="button">검색하기</button>
+      <button type="button" onClick={onSearch}>
+        검색하기
+      </button>
     </InputStyle1>
   );
 };

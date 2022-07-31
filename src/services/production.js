@@ -6,4 +6,10 @@ const productionListApi = (page, size) => {
   );
 };
 
-export { productionListApi };
+const productionSearchApi = (category, text) => {
+  return ReactTemplateApi.get(
+    `/api/production/lists?page=1&paramMap=%7B%7D&size=4&searchType=${category}&searchKeyword=${text}`
+  );
+};
+
+export { productionListApi, productionSearchApi };

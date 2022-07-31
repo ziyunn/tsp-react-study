@@ -13,11 +13,18 @@ import About from "pages/About/About.jsx";
 import ModelView from "./pages/ModelView/ModelView";
 import ModelList from "./pages/ModelList/ModelListTaewan.jsx";
 import Production from "./pages/Production/Production";
+import { useDispatch, useSelector } from "react-redux";
+
 import "assets/scss/common.scss";
 
 import { AppBody } from "./App.styles";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const { reducerState } = useSelector((state) => ({
+    reducerState: state.commonReducer,
+  }));
   return (
     <ConfirmModalProvider>
       <GlobalHelmet />
@@ -33,7 +40,12 @@ function App() {
               element={<ModelView />}
             />
             <Route path="/modelList/:category" element={<ModelList />} />
-            <Route path="/production" element={<Production />} />
+            <Route
+              path="/production"
+              element={
+                <Production reducerState={reducerState} dispatch={dispatch} />
+              }
+            />
           </Routes>
           <Footer />
         </AppBody>
