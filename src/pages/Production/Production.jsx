@@ -99,6 +99,11 @@ const Production = (props) => {
     const productionData = await productionListApi(1, 4);
     setProductionList(productionData.productionList);
   };
+
+  const _setList = (data) => {
+    setProductionList(data);
+  };
+
   if (!productionList) return false;
   return (
     <>
@@ -116,8 +121,12 @@ const Production = (props) => {
         <img src={ProductionImage} className="img-w100" alt="" />
       </ProductionTop>
       <ProductionForm>
-        <Input />
-        <Select />
+        <Input
+          dispatch={props.dispatch}
+          reducerState={props.reducerState}
+          setList={_setList}
+        />
+        <Select dispatch={props.dispatch} />
       </ProductionForm>
       <ProductionBody>{ProductionList(productionList)}</ProductionBody>
     </>
