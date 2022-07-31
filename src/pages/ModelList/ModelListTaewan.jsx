@@ -6,7 +6,7 @@ import { Title3, Body1, Body3, calcRem, Body2 } from "../../style/font";
 import { white, black } from "../../style/color";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { modelListApi, modelViewApi } from "../../services/category";
-import { gnbNum } from "../../modules/gnb";
+import { changeGnb } from "../../modules/action";
 import { useDispatch } from "react-redux";
 
 const ListWrap = styled.section`
@@ -164,7 +164,7 @@ const ModelList = () => {
   }, [category]);
 
   useEffect(() => {
-    dispatch(gnbNum(Number(category)));
+    dispatch(changeGnb(Number(category)));
   }, []);
 
   if (!modelList) return false;
