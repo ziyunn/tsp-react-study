@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProductionImage from "assets/images/production/girl-woman-female-model-spring-collection-790742-pxhere 1.png";
 import styled from "styled-components";
 import { Title2, Body3, Body2, calcRem } from "../../style/font";
 import { black, yellow, gray, white } from "../../style/color";
 import Input from "../../components/Form/Input";
 import Select from "../../components/Form/Select";
+import { productionListApi } from "../../services/production";
 
 const ProductionTop = styled.section`
   position: relative;
@@ -58,6 +59,8 @@ const ProductionBody = styled.section`
     display: inline-block;
     padding-left: ${calcRem(8)}rem;
     width: 50%;
+    box-sizing: border-box;
+    vertical-align: top;
   }
   img {
     vertical-align: middle;
@@ -65,22 +68,38 @@ const ProductionBody = styled.section`
   }
 `;
 
-const ProductionList = () => {
-  return (
-    <ul>
-      <li>
-        <div className="production-body__box">
-          <img src={ProductionImage} alt="" />
-          <Body2 color={white} className="production-body__txt">
-            2021국제패션디자인전문학교 졸업작품 패션쇼
-          </Body2>
-        </div>
-      </li>
-    </ul>
-  );
-};
-
 const Production = (props) => {
+  const [productionList, setProductionList] = useState(null);
+  useEffect(() => {
+    getList();
+  }, []);
+  const ProductionList = (productionList) => {
+    return (
+      <ul>
+        {productionList.map((item) => {
+          return (
+            <li key={item.idx}>
+              <div className="production-body__box">
+                <img
+                  src={`${process.env.REACT_APP_ADMIN_URL}${item.productionImage[0].fileMask}`}
+                  alt={item.title}
+                />
+                <Body2 color={white} className="production-body__txt">
+                  {item.title}
+                </Body2>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
+  const getList = async () => {
+    const productionData = await productionListApi(1, 4);
+    setProductionList(productionData.productionList);
+  };
+  if (!productionList) return false;
   return (
     <>
       <ProductionTop>
@@ -100,7 +119,7 @@ const Production = (props) => {
         <Input />
         <Select />
       </ProductionForm>
-      <ProductionBody>{ProductionList()}</ProductionBody>
+      <ProductionBody>{ProductionList(productionList)}</ProductionBody>
     </>
   );
 };

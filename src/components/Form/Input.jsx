@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 import { calcRem } from "../../style/font";
 import icoMagnifier from "assets/images/production/icon_magnifier.png";
 
@@ -31,9 +32,16 @@ const InputStyle1 = styled.div`
 `;
 
 const Input = (props) => {
+  const handleChange = () => {};
   return (
     <InputStyle1>
-      <input type="text" placeholder="검색어를 입력하세요" />
+      <input
+        type="text"
+        placeholder="검색어를 입력하세요"
+        onChange={(e) => {
+          handleChange(e);
+        }}
+      />
       <button type="button">검색하기</button>
     </InputStyle1>
   );

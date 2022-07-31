@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Constants from "../../lib/state";
 import { useSelector, useDispatch } from "react-redux";
-import { gnbNum } from "../../modules/gnb";
+import { changeGnb } from "../../modules/action";
 import { Link, useParams } from "react-router-dom";
 import Logo from "assets/images/common/logo.png";
 const header = (props) => {
@@ -36,10 +36,10 @@ const header = (props) => {
   };
 
   const { gnb_num } = useSelector((state) => ({
-    gnb_num: state.gnb.number,
+    gnb_num: state.commonReducer.number,
   }));
 
-  const onGnbNum = (idx) => dispatch(gnbNum(idx));
+  const onGnbNum = (idx) => dispatch(changeGnb(idx));
 
   const gnbList = () => {
     return (

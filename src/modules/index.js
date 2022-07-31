@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import gnb from './gnb';
+import { combineReducers } from "redux";
+import commonReducer from "./commonReducer";
 
 const rootReducer = combineReducers({
-	gnb
+  commonReducer,
 });
 
 export default rootReducer;
