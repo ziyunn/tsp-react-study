@@ -12,4 +12,8 @@ const productionSearchApi = (category, text) => {
   );
 };
 
-export { productionListApi, productionSearchApi };
+const productionViewApi = (idx) => {
+  return ReactTemplateApi.get(`/api/production/${idx}`);
+};
+
+export { productionListApi, productionSearchApi, productionViewApi };

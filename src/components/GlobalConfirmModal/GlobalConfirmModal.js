@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { ConfirmModal } from 'remember-ui';
+import React, { useContext } from "react";
+import { ConfirmModal } from "remember-ui";
 
-import { ConfirmModalContext } from 'context/ConfirmModalContext';
+import { ConfirmModalContext } from "context/ConfirmModalContext";
 
 const GlobalConfirmModal = () => {
   const {

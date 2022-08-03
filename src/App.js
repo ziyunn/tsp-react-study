@@ -13,6 +13,7 @@ import About from "pages/About/About.jsx";
 import ModelView from "./pages/ModelView/ModelView";
 import ModelList from "./pages/ModelList/ModelListTaewan.jsx";
 import Production from "./pages/Production/Production";
+import ProductionView from "./pages/ModelView/ProductionView";
 import { useDispatch, useSelector } from "react-redux";
 
 import "assets/scss/common.scss";
@@ -45,6 +46,10 @@ function App() {
               element={
                 <Production reducerState={reducerState} dispatch={dispatch} />
               }
+            />
+            <Route
+              path="/productionView/:number"
+              element={<ProductionView />}
             />
           </Routes>
           <Footer />
