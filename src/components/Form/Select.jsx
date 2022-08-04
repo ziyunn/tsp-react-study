@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { calcRem } from "../../style/function";
 import icoArrow from "assets/images/production/icon_arrow.png";
+import { changeCategory } from "../../modules/action";
 
 const SelectStyle1 = styled.div`
   margin-top: ${calcRem(16)}rem;
@@ -23,9 +24,19 @@ const SelectStyle1 = styled.div`
 `;
 
 const Select = (props) => {
+  const handleChange = (value) => {
+    console.log(value);
+    props.dispatch(changeCategory(value));
+  };
   return (
     <SelectStyle1>
-      <select name="" id="">
+      <select
+        name=""
+        id=""
+        onChange={(e) => {
+          handleChange(e.target.value);
+        }}
+      >
         <option value="0">전체</option>
         <option value="1">제목</option>
         <option value="2">내용</option>

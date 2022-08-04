@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ProductionImage from "assets/images/production/girl-woman-female-model-spring-collection-790742-pxhere 1.png";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { Title2, Body3, Body2, calcRem } from "../../style/font";
 import { black, yellow, gray, white } from "../../style/color";
 import Input from "../../components/Form/Input";
@@ -78,17 +79,19 @@ const Production = (props) => {
       <ul>
         {productionList.map((item) => {
           return (
-            <li key={item.idx}>
-              <div className="production-body__box">
-                <img
-                  src={`${process.env.REACT_APP_ADMIN_URL}${item.productionImage[0].fileMask}`}
-                  alt={item.title}
-                />
-                <Body2 color={white} className="production-body__txt">
-                  {item.title}
-                </Body2>
-              </div>
-            </li>
+            <Link to={`/productionView/${item.idx}`}>
+              <li key={item.idx}>
+                <div className="production-body__box">
+                  <img
+                    src={`${process.env.REACT_APP_ADMIN_URL}${item.productionImage[0].fileMask}`}
+                    alt={item.title}
+                  />
+                  <Body2 color={white} className="production-body__txt">
+                    {item.title}
+                  </Body2>
+                </div>
+              </li>
+            </Link>
           );
         })}
       </ul>
@@ -99,6 +102,11 @@ const Production = (props) => {
     const productionData = await productionListApi(1, 4);
     setProductionList(productionData.productionList);
   };
+
+  const _setList = (data) => {
+    setProductionList(data);
+  };
+
   if (!productionList) return false;
   return (
     <>
@@ -116,8 +124,12 @@ const Production = (props) => {
         <img src={ProductionImage} className="img-w100" alt="" />
       </ProductionTop>
       <ProductionForm>
-        <Input />
-        <Select />
+        <Input
+          dispatch={props.dispatch}
+          reducerState={props.reducerState}
+          setList={_setList}
+        />
+        <Select dispatch={props.dispatch} />
       </ProductionForm>
       <ProductionBody>{ProductionList(productionList)}</ProductionBody>
     </>
