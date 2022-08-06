@@ -6,6 +6,7 @@ import { Title2, Body3, Body2, calcRem } from "../../style/font";
 import { black, yellow, gray, white } from "../../style/color";
 import Input from "../../components/Form/Input";
 import Select from "../../components/Form/Select";
+import Pagination from "../../components/Pagination/Pagination";
 import { productionListApi } from "../../services/production";
 
 const ProductionTop = styled.section`
@@ -32,9 +33,11 @@ const ProductionTop = styled.section`
     }
   }
 `;
-
+const ProductionWrap = styled.section`
+  background: ${black};
+`;
 const ProductionForm = styled.section`
-  background: #000000;
+  background: ${black};
   padding: ${calcRem(40)}rem ${calcRem(16)}rem ${calcRem(16)}rem;
 `;
 
@@ -99,7 +102,7 @@ const Production = (props) => {
   };
 
   const getList = async () => {
-    const productionData = await productionListApi(1, 4);
+    const productionData = await productionListApi(1, 1);
     setProductionList(productionData.productionList);
   };
 
@@ -109,7 +112,7 @@ const Production = (props) => {
 
   if (!productionList) return false;
   return (
-    <>
+    <ProductionWrap>
       <ProductionTop>
         <div className="production-top__wrap">
           <div className="production-top__slogan">
@@ -132,7 +135,8 @@ const Production = (props) => {
         <Select dispatch={props.dispatch} />
       </ProductionForm>
       <ProductionBody>{ProductionList(productionList)}</ProductionBody>
-    </>
+      <Pagination />
+    </ProductionWrap>
   );
 };
 
