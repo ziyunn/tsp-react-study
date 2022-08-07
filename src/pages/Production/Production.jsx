@@ -73,7 +73,7 @@ const ProductionBody = styled.section`
 `;
 
 const Production = (props) => {
-  const [productionList, setProductionList] = useState(null);
+  const [productionData, setProductionData] = useState(null);
   useEffect(() => {
     getList();
   }, []);
@@ -103,14 +103,14 @@ const Production = (props) => {
 
   const getList = async () => {
     const productionData = await productionListApi(1, 1);
-    setProductionList(productionData.productionList);
+    setProductionData(productionData);
   };
 
   const _setList = (data) => {
-    setProductionList(data);
+    setProductionData(data);
   };
 
-  if (!productionList) return false;
+  if (!productionData) return false;
   return (
     <ProductionWrap>
       <ProductionTop>
@@ -134,8 +134,13 @@ const Production = (props) => {
         />
         <Select dispatch={props.dispatch} />
       </ProductionForm>
-      <ProductionBody>{ProductionList(productionList)}</ProductionBody>
-      <Pagination />
+      <ProductionBody>
+        {ProductionList(productionData.productionList)}
+      </ProductionBody>
+      <Pagination
+        pageNum={productionData.pageSize}
+        totalList={productionData.productionListTotalCnt}
+      />
     </ProductionWrap>
   );
 };
