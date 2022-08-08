@@ -55,7 +55,9 @@ const Pagination = (props) => {
         {[...Array(props.totalList)].map((item, idx) => {
           return (
             <Body2
-              className="pagination__item"
+              className={`pagination__item ${
+                props.pageNum === idx + 1 ? "is-active" : ""
+              }`}
               color={darkGray}
               as="li"
               key={idx}
