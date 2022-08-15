@@ -75,7 +75,7 @@ const ProductionBody = styled.section`
 const Production = (props) => {
   const [productionData, setProductionData] = useState(null);
   useEffect(() => {
-    getList();
+    getList(1);
   }, []);
   const ProductionList = (productionList) => {
     return (
@@ -101,8 +101,8 @@ const Production = (props) => {
     );
   };
 
-  const getList = async () => {
-    const productionData = await productionListApi(1, 1);
+  const getList = async (idx) => {
+    const productionData = await productionListApi(idx, 1);
     setProductionData(productionData);
   };
 
@@ -138,6 +138,9 @@ const Production = (props) => {
         {ProductionList(productionData.productionList)}
       </ProductionBody>
       <Pagination
+        getList={(e) => {
+          getList(e).then();
+        }}
         pageNum={productionData.pageSize}
         totalList={productionData.productionListTotalCnt}
       />

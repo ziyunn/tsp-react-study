@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PrevImage from "assets/images/pagenation/prev.png";
 import FirstPrevImage from "assets/images/pagenation/first_prev.png";
@@ -36,13 +36,15 @@ const PaginationStyle = styled.ul`
   }
 `;
 
-const onPage = (idx) => {
-  console.log(idx);
-};
-
 const Pagination = (props) => {
-  console.log(props);
+  const [activeNum, setActiveNum] = useState(1);
 
+  console.log(props);
+  const onPage = (idx) => {
+    console.log(idx);
+    props.getList(idx);
+    setActiveNum(idx);
+  };
   return (
     <>
       <PaginationStyle>
@@ -56,7 +58,7 @@ const Pagination = (props) => {
           return (
             <Body2
               className={`pagination__item ${
-                props.pageNum === idx + 1 ? "is-active" : ""
+                idx + 1 === activeNum ? "is-active" : ""
               }`}
               color={darkGray}
               as="li"
