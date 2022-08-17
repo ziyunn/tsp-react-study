@@ -102,7 +102,7 @@ const Production = (props) => {
   };
 
   const getList = async (idx) => {
-    const productionData = await productionListApi(idx, 1);
+    const productionData = await productionListApi(idx, 2);
     setProductionData(productionData);
   };
 

@@ -48,10 +48,24 @@ const Pagination = (props) => {
   return (
     <>
       <PaginationStyle>
-        <Body2 className="pagination__item" color={darkGray} as="li">
+        <Body2
+          className="pagination__item"
+          color={darkGray}
+          as="li"
+          onClick={() => {
+            onPage(1);
+          }}
+        >
           <img src={FirstPrevImage} />
         </Body2>
-        <Body2 className="pagination__item" color={darkGray} as="li">
+        <Body2
+          className="pagination__item"
+          color={darkGray}
+          as="li"
+          onClick={() => {
+            onPage(activeNum - 1);
+          }}
+        >
           <img src={PrevImage} />
         </Body2>
         {[...Array(props.totalList)].map((item, idx) => {
