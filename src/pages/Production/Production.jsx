@@ -6,6 +6,7 @@ import { Title2, Body3, Body2, calcRem } from "../../style/font";
 import { black, yellow, gray, white } from "../../style/color";
 import Input from "../../components/Form/Input";
 import Select from "../../components/Form/Select";
+import Pagination from "../../components/Pagination/Pagination";
 import { productionListApi } from "../../services/production";
 
 const ProductionTop = styled.section`
@@ -32,9 +33,11 @@ const ProductionTop = styled.section`
     }
   }
 `;
-
+const ProductionWrap = styled.section`
+  background: ${black};
+`;
 const ProductionForm = styled.section`
-  background: #000000;
+  background: ${black};
   padding: ${calcRem(40)}rem ${calcRem(16)}rem ${calcRem(16)}rem;
 `;
 
@@ -70,9 +73,9 @@ const ProductionBody = styled.section`
 `;
 
 const Production = (props) => {
-  const [productionList, setProductionList] = useState(null);
+  const [productionData, setProductionData] = useState(null);
   useEffect(() => {
-    getList();
+    getList(1);
   }, []);
   const ProductionList = (productionList) => {
     return (
@@ -98,18 +101,18 @@ const Production = (props) => {
     );
   };
 
-  const getList = async () => {
-    const productionData = await productionListApi(1, 4);
-    setProductionList(productionData.productionList);
+  const getList = async (idx) => {
+    const productionData = await productionListApi(idx, 2);
+    setProductionData(productionData);
   };
 
   const _setList = (data) => {
-    setProductionList(data);
+    setProductionData(data);
   };
 
-  if (!productionList) return false;
+  if (!productionData) return false;
   return (
-    <>
+    <ProductionWrap>
       <ProductionTop>
         <div className="production-top__wrap">
           <div className="production-top__slogan">
@@ -131,8 +134,17 @@ const Production = (props) => {
         />
         <Select dispatch={props.dispatch} />
       </ProductionForm>
-      <ProductionBody>{ProductionList(productionList)}</ProductionBody>
-    </>
+      <ProductionBody>
+        {ProductionList(productionData.productionList)}
+      </ProductionBody>
+      <Pagination
+        getList={(e) => {
+          getList(e).then();
+        }}
+        pageNum={productionData.pageSize}
+        totalList={productionData.productionListTotalCnt}
+      />
+    </ProductionWrap>
   );
 };
 

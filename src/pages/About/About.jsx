@@ -3,7 +3,8 @@ import { Title1, Title3, Body1, Body2, Body3, calcRem } from "../../style/font";
 import { darkGray, yellow, gray } from "../../style/color";
 import AboutImage from "assets/images/about/img.png";
 
-import parse from "html-react-parser";
+import parse from "html-react-parser/dist/html-react-parser";
+
 import styled from "styled-components";
 
 const businessList = [
