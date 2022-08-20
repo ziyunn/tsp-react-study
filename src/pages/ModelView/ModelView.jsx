@@ -299,19 +299,19 @@ const ModelView = () => {
     );
   };
 
-  useEffect(() => {
-    modelViewItem();
-  }, []);
   const modelViewItem = async () => {
     const modelData = await modelViewApi(category, number);
     setModel(modelData);
   };
+  useEffect(() => {
+    modelViewItem();
+  }, []);
   const size3 = (number) => {
     const sizes = model.size3 && model.size3;
     const size = sizes.split("-");
     return size[number];
   };
-  if (model === null) return false;
+  if (model === null || model === undefined) return false;
   return (
     <ModelWrap>
       <MainVisual>
