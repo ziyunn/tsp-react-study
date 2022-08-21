@@ -142,7 +142,7 @@ const Production = (props) => {
           getList(e).then();
         }}
         pageNum={productionData.pageSize}
-        totalList={productionData.productionListTotalCnt}
+        totalList={productionData.perPageListCnt}
       />
     </ProductionWrap>
   );
